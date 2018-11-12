@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>微信扫描登录</title>
+        <script src="/static/admin/js/jquery.js"></script>
+        <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+        <script>
+            $(function () {
+                var str="{$state}";
+                console.log(str);
+                var state=str.replace(/\s+/g,"");
+                var obj = new WxLogin({
+                    id:"login_container",
+                    appid: "wx22d7a0063685b948",
+                    scope: "snsapi_login",
+                    redirect_uri: "http://hd.xspxzying.cn/index.php/hout/login/wxlogin_callback",
+                    state: "{$state}",
+                    style: "", //"black"、"white"
+                    href: ""
+                });
+            })
+        </script>
+        <style>
+            #main {
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body style="text-align:center;">
+        <div style="width:100%;margin-left:auto;margin-right:auto;">
+            <div id="login_container" style="margin-top:-50px;"></div>
+        </div>
+    </body>
+</html>

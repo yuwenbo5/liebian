@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* CSS Document */
+body{font-size:12px;background:#fff;margin: 0}
+{.index_width}
+[data-dpr="2"] body{font-size:24px}
+[data-dpr="3"] body{font-size:36px}
+
+/*--------------------------清除浮动 -----------------------------------*/
+.clear:before,.clear:after{display: table;line-height: 0;content: "";}
+.clear:after {clear: both; }
+.index_center{
+	margin:0 auto;
+	width: 100%;
+	overflow: hidden;
+}
+.index_width{
+	margin:0 auto;
+}
+.index_width{
+	width: 100%;
+	max-width: 750px;
+	overflow: hidden;
+}
+[data-dpr="2"] .index_width{
+	width: 100%;
+	max-width: 1500px;
+	overflow: hidden;
+}
+[data-dpr="3"] .index_width{
+	width: 100%;
+	max-width: 2250px;
+	overflow: hidden;
+}
+.maincontent{
+	width: 100%;
+	border-bottom: 0.3rem solid #f2f2f2;
+}
+.maincontent_top img{
+	width: 100%;
+	display: block;
+	height: auto;
+}
+/* zy.media style */
+.zy_media { background: #000; position: relative }
+.zy_media video, .zy_media audio { width: 100%; position: absolute; top: 0; left: 0; display: block }
+.zy_fullscreen { overflow: hidden }
+.zy_fullscreen .zy_media { position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 1000 }
+.zy_fullscreen .zy_wrap, .zy_fullscreen video { width: 100%; height: 100% }
+.zy_wrap { width: 100% }
+
+/* 控制栏 */
+.zy_controls { height: 1.222rem; background: #fff; position: absolute; left: 0; right: 0; bottom: 0; -webkit-transition: bottom .5s; transition: bottom .5s; display: -webkit-box; display: box; display: -webkit-flex; display: flex ;}
+
+/* 播放、暂停按钮 */
+.zy_playpause_btn_play, .zy_playpause_btn_pause {margin-top:0.15rem;width: 0.422rem; height: 0.422rem;margin-left:0.2rem; margin-right: 0.411rem; padding: 0.391rem 0 0 0.389rem; position: relative ;border:0.04rem solid #ff6159;border-radius: 0.422rem }
+.zy_playpause_btn_play::before { width: 0; height: 0; content: ''; border-color: transparent transparent transparent #ff6159; border-width: 0.222rem 0.333rem; border-style: solid; position: absolute; top: 0.2rem; left: 0.287rem}
+.zy_playpause_btn_pause::before, .zy_playpause_btn_pause::after { width: 0.083rem; height: 0.389rem; content: ''; background: #ff6159; position: absolute; top: 0.228rem; left: 0.259rem }
+.zy_playpause_btn_pause::after { left: 0.481rem }
+
+/* 时间线操作区 */
+.zy_timeline { margin-right: 0.278rem; -webkit-box-flex: 1; -webkit-flex: 1 1 auto; flex: 1 1 auto }
+.zy_timeline_slider { width: 100%; height: 0.028rem; background: #b3b3b3; position: relative; top: 0.583rem; left: 0 }
+.zy_timeline_buffering { width: 100%; height: 0.417rem; top: -0.194rem; background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255, 255, 255, .15)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .15)), color-stop(.75, rgba(255, 255, 255, .15)), color-stop(.75, transparent), to(transparent)); background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent); background-image: linear-gradient(-45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent); -webkit-background-size: 0.417rem 0.417rem; background-size: 0.417rem 0.417rem; -webkit-animation: ani_buffering 2s linear infinite; animation: ani_buffering 2s linear infinite; position: absolute; }
+@-webkit-keyframes ani_buffering {
+	from { background-position: 0 0 }
+	to { background-position: 0.833rem 0 }
+}
+@keyframes ani_buffering {
+	from { background-position: 0 0 }
+	to { background-position: 0.833rem 0 }
+}
+.zy_timeline_loaded { width: 0; height: 0.028rem; background: #b3b3b3; position: absolute; top: 0; left: 0; z-index: 1 }
+.zy_timeline_current { width: 0; height: 0.028rem; background: #ff6159; position: relative; z-index: 2 }
+.zy_timeline_handle { width: 0.444rem; height: 0.444rem; border-radius: 0.444rem; background: #fff; position: absolute; top: -0.222rem; left: -0.222rem; z-index: 3 ;border: 0.028rem solid #b3b3b3;}
+
+/* 时间展示 */
+.zy_time { width: auto; height: 1.222rem; margin-right: 0.139rem; line-height: 1.222rem; font-size:0.306rem; color: #999; text-align: center }
+.zy_time .zy_currenttime { color: #999 }
+
+/*二维码*/
+.erweima{
+	position: fixed;
+    bottom: 70px;
+    right: 0;
+    width:1rem;
+    height:1rem;
+    z-index: 99;
+    padding:0.1rem;
+    background: #fff;
+}
+.erweima a {
+    background: #fff;
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+}
+
+.saobg{background:#000;opacity:0.4;filter:Alpha(opacity=40);width:100%;position:absolute;z-index:1000;top:0;bottom:0;height:0;overflow:hidden;margin:0 auto;}
+.saoimg{width:100%;position:fixed;z-index:99999;display:none;left:50%;margin-left:-3rem;margin-top:-2.5rem;}
+.saoimg img{width:3rem;width:3rem;display:block;}
+.imgclose{position:absolute;z-index:999999;border:none;background:none;top:0;right:0;}
+.imgclose p{width:40px;height:40px;width:1.250rem;height:1rem;font-size: 0.5rem;text-align: center;padding-top:0.3rem ;color:#2E2E2E;}
+.saoimg_main{
+	background: #fff;
+	width: 3rem;
+	padding:0.6rem 1.5rem;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 0.4rem #494949;
+	position: relative;
+}
+.saoimg_top{
+	color:#F24D4D;
+	font-size: 0.4rem;
+	text-align: center;
+	padding-bottom: 0.4rem;
+}
+.saoimg_bot{
+	color:#999999;
+	font-size: 0.35rem;
+	text-align: center;
+	padding-top: 0.4rem;
+}

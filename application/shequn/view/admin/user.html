@@ -1,0 +1,185 @@
+{extend name="hout@layout/base" /}
+{block name="title"}{$title} {/block}
+{block name="header"}
+{/block}
+{block name="body"}
+<div class="info">
+    <div class="tit">{$title}</div>
+    <div class="search">
+        <form action="" method="get">
+            <input type="text" name="openid" placeholder="openid" class="w150">
+            <input type="text" name="ip" placeholder="ip" class="w150">
+            <input type="text" name="rukou" placeholder="入口" class="w150" value="{:input('rukou')}">
+            <input type="text" name="qun_id" placeholder="项目id" class="w150" value="{:input('qun_id')}">
+            <input type="text" name="ewm_id" placeholder="二维码id" class="w150" value="{:input('ewm_id')}">
+            <input type="text" name="opens" placeholder="打开次数" class="w150">
+            <input type="text" name="touchs" placeholder="长按次数" class="w150">
+            <input type="text" name="area" placeholder="区域" class="w150">
+            <input type="text" name="nickname" placeholder="昵称" class="w150">
+            <select name="black" style="position:relative;top:3px;">
+                <option value="">状态</option>
+                <option value="1">拉黑</option>
+                <option value="0">正常</option>
+            </select>
+            <input name="begin" class="date"  type="text" placeholder="开始日期" value="{:input('begin')}">
+            -
+            <input name="end" class="date" type="text"  placeholder="结束日期" value="{:input('end')}"/>
+            <input type="submit" class="coolbg" value="搜索" style="cursor:pointer" />
+            <script>
+                $(".date").jeDate({
+                    format:"YYYY-MM-DD",
+                })
+            </script>
+        </form>
+    </div>
+    <input type="submit" class="black_user_all" value="批量openid拉黑" style="cursor:pointer" />
+    <input type="submit" class="black_ip_all" value="批量ip拉黑" style="cursor:pointer" />
+</div>
+<div class="list mT10">
+    <form name="CheckboxForm" action="" method="post">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr class="tit">
+                <th width="4%"><input type="checkbox" name="select_all" value="全选" class="select_all">&nbsp;序号</th>
+                <th>openid</th>
+                <th>昵称</th>
+                <th>头像</th>
+                <th><a href="{:url('user',['qun_id'=>input('qun_id')])}?order=ip" target="_blank">真实ip</a></th>
+                <th>UA</th>
+                <th>地区</th>
+                <th>入口</th>
+                <th>项目id</th>
+                <th>二维码id</th>
+                <th width="3%"><a href="{:url('user',['qun_id'=>input('qun_id')])}?order=opens" target="_blank">打开次数</a></th>
+                <th width="3%"><a href="{:url('user',['qun_id'=>input('qun_id')])}?order=touchs" target="_blank">长按次数</a></th>
+                <th width="3%">拉黑</th>
+                <th width="6%">创建时间</th>
+                <th width="6%">更新时间</th>
+            </tr>
+            {foreach ($data['data'] as $key => $v)}
+            <tr class="table_list">
+                <td><input type="checkbox" name="ids" value="{$v['id']}" class="select_checkbox">&nbsp;{++$key}</td>
+                <td>
+                    {if($v['black'] == 1)}
+                    <a style="color: #f00" href="{:url('black',['openid'=>$v['openid'], 'ip'=>$v['ip'], 'status'=>0])}">【白】</a>
+                    {else}
+                    <a href="{:url('black',['openid'=>$v['openid'], 'ip'=>$v['ip'], 'status'=>1])}">【黑】</a>
+                    {/if}
+                    <a href="{:url('user',['openid'=>$v['openid']])}" target="_blank">{$v['openid']}</a>
+                </td>
+                <td><a href="{:url('user',['nickname'=>$v['nickname']])}" target="_blank">{$v['nickname']}</a></td>
+                <td><img src="{$v['headimgurl']}" width="30" height="30"></td>
+                <td>
+                    {if($v['blackip'] == 2)}
+                    <a style="color: #f00" href="{:url('blackip',['openid'=>$v['openid'], 'ip'=>$v['ip'], 'status'=>0])}">【白】</a>
+                    {else}
+                    <a href="{:url('blackip',['openid'=>$v['openid'], 'ip'=>$v['ip'], 'status'=>2])}">【黑】</a>
+                    {/if}
+                    <a href="{:url('user',['ip'=>$v['ip']])}" target="_blank">{$v['ip']}</a>
+                    <a href="https://www.baidu.com/s?wd={$v['ip']}" target="_blank">地址</a>
+                </td>
+                <td title="{$v['ua'] | default = '空'}" style="cursor: pointer">
+                    <a href="{:url('user',['qun_id'=>input('qun_id')])}?ua={$v['ua']}" target="_blank">
+                        {php}
+                        $ua = getua($v['ua']);
+                        echo $ua['sys']." / ".$ua['net'];
+                        {/php}
+                    </a>
+                </td>
+                <td><a href="{:url('user',['qun_id'=>input('qun_id')])}?area={$v['area']}" target="_blank">{$v['area']}</a></td>
+                <td><a href="{:url('user',['qun_id'=>input('qun_id')])}?rukou={$v['rukou']}" target="_blank">{$v['rukou']}</a></td>
+                <td>{$v['qun_id']}</td>
+                <td>{$v['ewm_id']}</td>
+                <td>{$v['opens']}</td>
+                <td>{$v['touchs']}</td>
+                <td>{$v['black']}</td>
+                <td>{$v['create_time']}</td>
+                <td>{$v['update_time']}</td>
+            </tr>
+            {/foreach}
+            <tr>
+                <td colspan="18" class="pagelist"><div class="total">共{$data['total']}条记录</div>{$data['page']}</td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    $(function(){
+        isChecked = false;
+        $('.select_all').click(function(){
+            isChecked = !isChecked;
+            if(isChecked){
+                $('.select_checkbox').prop("checked",true)
+            }else{
+                $('.select_checkbox').removeProp("checked")
+            }
+        });
+
+        $('.black_user_all').click(function(){
+
+            var chk_value =[];
+            $('input[name="ids"]:checked').each(function(){
+                chk_value.push($(this).val());
+            });
+            if(chk_value.length==0){
+                alert('你还没有选择任何内容！');
+                return ;
+            }
+
+            $.ajax({
+                type: 'post',
+                url: '{:url("blackAll")}',
+                data: {
+                    ids: chk_value,
+                    status: 1
+                },
+                async: false,  //默认异步
+                cache: false,  //清除缓存
+                dataType: 'json',
+                success: function (data) {
+                    if (data) {
+                        window.location.reload(true);
+                    }
+                },
+                error: function () {
+                    alert('修改失败');
+                }
+            });
+
+        });
+        $('.black_ip_all').click(function(){
+
+            var chk_value =[];
+            $('input[name="ids"]:checked').each(function(){
+                chk_value.push($(this).val());
+            });
+            if(chk_value.length==0){
+                alert('你还没有选择任何内容！');
+                return ;
+            }
+
+            $.ajax({
+                type: 'post',
+                url: '{:url("blackipAll")}',
+                data: {
+                    ids: chk_value,
+                    status: 2
+                },
+                async: false,  //默认异步
+                cache: false,  //清除缓存
+                dataType: 'json',
+                success: function (data) {
+                    if (data) {
+                        window.location.reload(true);
+                    }
+                },
+                error: function () {
+                    alert('修改失败');
+                }
+            });
+
+        });
+    })
+</script>
+{/block}
+{block name = "footer"}
+{/blcok}

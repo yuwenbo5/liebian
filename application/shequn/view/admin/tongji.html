@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>-->
+    <title>{$title}_一江西迪赞裂变</title>
+    <link href="/static/admin/css/base.css" rel="stylesheet" type="text/css">
+    <script src="/static/admin/js/jquery.js"></script>
+    <script src="/static/admin/layer/layer.js"></script>
+</head>
+
+<body>
+<div class="info">
+    <div class="tit">{$title}</div>
+</div>
+<div class="list mT10">
+    <form name="CheckboxForm" action="" method="post">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr class="tit">
+                <th>群编号</th>
+                <th>打开人次</th>
+                <th>长按人次</th>
+                <!--<th>流失</th>-->
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <!--<th>成员数</th>-->
+                <!--<th>截图量</th>-->
+                <th>时长</th>
+                <th width="280" style="text-align:center;">操作
+                    <a class="coolbg delmorepic" style="margin-left:10px;">批量删除</a>：
+                    <input type="text" style="width:40px;margin-right:3px;" name="start">至<input type="text" style="width:40px;margin-left:3px;" name="end">
+               </th>
+            </tr>
+            {foreach ($data as $v)}
+            <tr {:$v['ewm_id'] == $now_ewm_id ? 'class="bgred"' : ''}>
+            <td><a href="{:url('img', ['ewm_id'=>$v['ewm_id'], 'qun_id'=>input('id'), 'is'=>1])}" target="_blank">{$v['ewm_id']}</a></td>
+            <td>{$v['opens']}</td>
+            <td>{$v['touchs']}</td>
+            <td>{$v['start_time']}</td>
+            <td>{$v['end_time']}</td>
+            <!--<td><input type="text" name="members" class="inp" value="{$v['members']}" style="width: 30px;"data="{$v['id']}"></td>-->
+            <!--<td><input type="text" name="imgs" class="inp" value="{$v['imgs']}" style="width: 30px;"data="{$v['id']}"></td>-->
+            <td>{$v['time']}</td>
+            <td style="text-align:center;">
+                {if($v['ewm_id'] == $now_ewm_id)}
+                <span class="coolbg" style="color: #f00">当前</span>
+                {else}
+                <a class="coolbg change" data="{:url('change',['ewm_id'=>$v['ewm_id'], 'qun_id'=>input('id')])}">切换</a>
+                {/if}
+                <a class="coolbg" target="_blank" href="{:url('user',['qun_id'=>input('id')])}?ewm_id={$v['ewm_id']}">查看</a>
+                <a class="coolbg delpic" data="{:url('delpic',['ewm_id'=>$v['ewm_id'], 'qun_id'=>input('id')])}">删除</a>
+            </td>
+            </tr>
+            {/foreach}
+
+        </table>
+    </form>
+</div>
+
+<script>
+    $(".delpic").on("click", function () {
+      var url = $(this).attr("data");
+      layer.confirm('你确定要删除该二维码吗？', {
+                btn: ['是', '否'] //按钮
+            }, function () {
+              var load_index = layer.load(0, { shade: false });
+              $.ajax({
+                  url:url,
+                  type:'GET',
+                  dataType: 'text',
+                  success: function (data) {
+                    console.log(data);
+                    if (data == 1) {
+                              var ly = layer.alert('删除成功！', function () {
+                                  layer.close(ly);
+                                  window.location.reload();
+                              });
+                          }
+                  },
+                  error: function () {
+                      layer.alert('删除成功！');
+                      window.location.reload();
+                  }
+              });
+        });
+    });
+
+    $(".delmorepic").on("click", function () {
+          var start=$('input[name=start]').val();
+          var end=$('input[name=end]').val();
+          var qun_id="<?php echo input('id');?>";
+
+          data = {start : start, end : end, qun_id : qun_id};
+          console.log(data);
+          layer.confirm('你确定要批量删除这些二维码吗？', {
+                    btn: ['是', '否'] //按钮
+                }, function () {
+                $.ajax({
+                        url:"{:url('admin/delmorepic')}?t=" + new Date(),
+                        data:data,
+                        type:'POST',
+                        dataType: 'text',
+                        success: function (data) {
+                          if (data == 1) {
+                                    var ly = layer.alert('删除成功！', function () {
+                                        layer.close(ly);
+                                        window.location.reload();
+                                    });
+                                }
+                        },
+                        error: function () {
+                            layer.alert('删除成功！');
+                            window.location.reload();
+                        }
+                    });
+        });
+    });
+
+    $(".change").on("click", function () {
+        var url = $(this).attr("data");
+        $.ajax({
+            url:url,
+            type:'GET',
+            dataType: 'json',
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function () {
+                alert("切换失败")
+            }
+        });
+    });
+
+    $(".inp").on("blur", function () {
+        var id = $(this).attr("data");
+        var field = $(this).attr("name");
+        var val = $(this).val();
+        if(val){
+            $.ajax({
+                type: 'post',
+                url: '{:url("update")}',
+                data: {
+                    value: val,
+                    field: field,
+                    id: id
+                },
+                async: false,  //默认异步
+                cache: false,  //清除缓存
+                dataType: 'json',
+                success: function (data) {
+                    if (data) {
+//                        alert('修改成功');
+//                    window.location.reload(true);
+                    }
+                },
+                error: function () {
+                    alert('修改失败');
+                }
+
+
+            });
+        }
+    });
+    function refresh(){
+        window.location.reload();
+    }
+    setTimeout('refresh()', 30000);
+</script>
+</body>
+</html>

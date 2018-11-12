@@ -1,0 +1,651 @@
+@charset "utf-8";
+html {
+    font-size: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+input, select, textarea {
+    padding: 0;
+    margin: 0
+}
+
+iframe {
+    display: block;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal
+}
+
+body {
+    margin: 0;
+    font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+    font-size: 12px;
+    line-height: 24px;
+    color: #333;
+    background-color: #eaedf1;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: #666
+}
+
+a:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
+a, a:focus, a:hover, a:active {
+    outline: 0
+}
+
+img {
+    width: auto \9;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    display: block
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+table td:nth-child(even) {
+    /*background: #f5f5f5;*/
+}
+
+table td, table th {
+    /*border: 1px solid #dedede;*/
+}
+
+.clear {
+    clear: both
+}
+
+.fL, .fR {
+    display: inline;
+}
+
+.fL {
+    float: left;
+}
+
+.fR {
+    float: right;
+}
+
+.mT10 {
+    margin-top: 10px;
+}
+
+.w50 {
+    width: 50px;
+}
+
+.w100 {
+    width: 100px;
+}
+
+.w150 {
+    width: 150px;
+}
+
+.w200 {
+    width: 200px;
+}
+
+.w250 {
+    width: 250px;
+}
+
+.w300 {
+    width: 300px;
+}
+
+.w350 {
+    width: 350px;
+}
+
+.w400 {
+    width: 400px;
+}
+
+/* 头部 */
+.header {
+    height: 50px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    background: #09c
+}
+
+.header .logo {
+    height: 50px;
+    width: 30px;
+    background: #0087b4 url(../img/logo.png) no-repeat center center;
+    display: block
+}
+
+.header a {
+    color: #fff;
+    line-height: 50px;
+    font-size: 14px;
+    border-right: 1px solid #0087b4;
+    padding: 0 10px;
+}
+
+.header .user {
+    float: right;
+    color: #fff;
+    line-height: 15px;
+    font-size: 14px;
+}
+
+/* 左侧 */
+.sdmenu {
+    left: 10px;
+    margin-top: 60px;
+    position: absolute;
+    z-index: 2;
+    width: 198px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 2px;
+    border: 1px solid #d2d2d2;
+}
+
+.sdmenu dl {
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+}
+
+.sdmenu .collapsed {
+    height: 40px;
+}
+
+.sdmenu dl dt {
+    line-height: 40px;
+    color: #333;
+    font-size: 14px;
+    padding-left: 10px;
+    background: #ededed;
+    cursor: pointer;
+    margin-bottom: 1px;
+}
+
+.sdmenu i {
+    float: left;
+    display: block;
+    line-height: 40px;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.sdmenu dd {
+    cursor: pointer;
+}
+
+.sdmenu dd a {
+    display: block;
+    padding-left: 2em;
+    line-height: 40px;
+    color: #666;
+}
+.sdmenu dt:hover{
+    color: #09c
+}
+.sdmenu a:hover, .sdmenu .current{
+    color: #09c
+}
+
+/* 右侧主体 */
+.main {
+    left: 220px;
+    overflow: hidden;
+    right: 10px;
+    top: 60px;
+    position: absolute;
+    z-index: 1;
+    padding-bottom: 20px;
+}
+
+/* 按钮集合 */
+.add {
+    background: url(../img/add.png) no-repeat 15px center;
+    padding-left: 35px;
+    font-size: 12px;
+    display: inline-block
+}
+
+.coolbg {
+    text-align: center;
+    border: 1px solid #c9c9c9;
+    background: #e4e4e4;
+    color: #535353;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 12px;
+    padding: 2px 10px;
+}
+
+.blue {
+    text-align: center;
+    border: 1px solid #0b72c2;
+    background: #76b8eb;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 16px;
+    line-height: 30px;
+    padding: 0 10px;
+    display: inline-block;
+}
+
+/* 菜单 */
+.menus {
+
+}
+
+.menus a {
+    text-align: center;
+    border: 1px solid #0b72c2;
+    background: #76b8eb;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 14px;
+    padding: 0 10px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+/* 提示 */
+.info {
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    padding: 5px 20px;
+}
+
+.info .tit {
+    font-size: 16px;
+    color: #000;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.info p {
+    background: url(../img/mark.png) no-repeat left 3px;
+    font-size: 12px;
+    padding-left: 25px;
+    margin-top: 5px;
+}
+
+/* 列表表格 */
+.list {
+    background: #fff;
+    border: 1px solid #d2d2d2;
+}
+
+.list form {
+    padding: 10px;
+}
+
+.list tr:nth-child(odd) {
+    background: #F4F4F4;
+}
+
+.list tr:hover {
+    background: #dedede;
+}
+
+.list th {
+    background: #EDEDED;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 10px 5px;
+    text-align: left;
+}
+
+.list td {
+    padding: 5px;
+}
+
+.list .bgred {
+    color: #c00;
+}
+
+.look, .edit, .del, .mark, .code {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0 5px;
+    vertical-align: middle;
+    cursor: pointer
+}
+
+.look {
+    background: url(../img/look.gif) no-repeat;
+}
+
+.edit {
+    background: url(../img/edit.png) no-repeat;
+}
+
+.del {
+    background: url(../img/del.gif) no-repeat;
+}
+
+.mark {
+    background: url(../img/mark.png) no-repeat;
+}
+
+.code {
+    background: url(../img/code.png) no-repeat;
+}
+
+/* 分页 */
+.pagelist {
+    overflow: hidden;
+}
+
+.pagelist .total {
+    float: left;
+    color: #999;
+}
+
+.pagination {
+    float: right;
+}
+
+.pagination li {
+    display: inline;
+}
+
+.pagination li a, .pagination li span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #428bca;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination li:first-child a, .pagination li:first-child span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.pagination li:last-child a, .pagination li:last-child span {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.pagination .active span {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #428bca;
+    border-color: #428bca;
+}
+
+/* 搜索 */
+.search {
+    line-height: 36px;
+    font-size: 14px;
+    padding: 5px 0;
+    overflow: hidden;
+}
+
+.search input, .search select {
+    margin: 5px 0;
+    padding: 5px
+}
+
+/* 添加普通文档 */
+.arcAdd {
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    padding: 20px 0;
+}
+
+.arcAdd form {
+    padding: 0 20px;
+}
+
+.arcAdd tr > :first-child {
+    color: #999;
+    text-align: right;
+}
+
+.arcAdd tr > :last-child {
+    text-align: left;
+}
+
+.arcAdd tr:nth-child(odd) {
+    background: #F4F4F4;
+}
+
+.arcAdd table td {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.arcAdd table td i {
+    color: #f00;
+    font-style: normal;
+    font-weight: bold
+}
+
+.arcAdd input, .arcAdd select {
+    margin: 5px 0;
+    padding: 5px
+}
+
+.arcAdd .button {
+    text-align: center;
+    border: 1px solid #0b72c2;
+    background: #76b8eb;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 16px;
+    height: 40px;
+    padding: 0 10px;
+}
+
+.uploadImage {
+    border: 1px dotted #b5bbc3;
+    border-radius: 5px;
+    float: left;
+    height: 120px;
+    position: relative;
+    width: 120px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.uploadImage input {
+    opacity: 0;
+    width: 120px;
+    height: 120px;
+}
+
+/*输入框提示*/
+.Validform_checktip {
+    font-size: 12px;
+    color: #ccc;
+    padding: 0 5px;
+}
+
+.Validform input, .Validform textarea {
+    border: 1px solid #a5aeb6;
+}
+
+.Validform_error {
+    background-color: #ffe7e7;
+}
+
+.Validform_wrong {
+    background: url(../img/error.png) no-repeat scroll left center rgba(0, 0, 0, 0);
+    color: red;
+    padding-left: 20px;
+    white-space: nowrap;
+}
+
+.Validform_right {
+    background: url(../img/right.png) no-repeat scroll left center rgba(0, 0, 0, 0);
+    color: #71b83d;
+    padding-left: 20px;
+}
+
+/* login */
+.login {
+    overflow: hidden;
+    margin: 0 auto;
+    font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+    color: #666;
+}
+
+.loginTop {
+    width: 100%;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.loginTop p {
+    width: 1000px;
+    margin: 0 auto;
+    height: 100px;
+    line-height: 100px;
+}
+
+.loginTop p .s1 {
+    font-size: 30px;
+    color: #000;
+    font-weight: bold;
+    float: left
+}
+
+.loginTop p .s2 {
+    font-size: 12px;
+    float: right
+}
+
+.loginForm {
+    padding-left: 610px;
+    background: url(../img/welcome.jpg) no-repeat left center;
+    width: 390px;
+    margin: 90px auto
+}
+
+.loginForm dl {
+    background: #f5f5f5;
+    margin-left: 30px;
+    padding: 10px 20px;
+}
+
+.loginForm dt {
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+}
+
+.loginForm dd {
+    font-size: 12px;
+    line-height: 30px;
+    overflow: hidden
+}
+
+.loginForm dd span {
+    line-height: 40px;
+    display: block
+}
+
+.loginForm input {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 30px;
+    width: 270px;
+}
+
+.loginForm .user {
+    background: #fff url(../img/user.gif) no-repeat 5px center;
+}
+
+.loginForm .pw {
+    background: #fff url(../img/pass.gif) no-repeat 5px center;
+}
+
+.loginForm .yzm {
+    padding-left: 10px;
+    width: 200px;
+}
+
+.loginForm .btn {
+    background: #ef0d4d;
+    border: 0;
+    width: 300px;
+    padding: 0;
+    color: #fff;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold
+}
+
+.regForm {
+    background: #f5f5f5;
+    padding: 20px 270px;
+}
+
+.loginBot {
+    background: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #e3e3e3;
+}
+
+.date {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAQCAYAAADj5tSrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNi8xNS8xNGnF/oAAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAAAoElEQVQ4jWPceOnNfwYqAz9dYRQ+E7UtwAaGjyUsDAyYYUgJ2HT5LXZLcEmSCnA6duOlN///////H0bDALl8dPH/////Z8FuNW6Qtvw2nL3lyjsGBgYGhlmRqnj1kGwJuqHIlhJlCXq8EOITEsdqCXLEbbr8FisfFkTo+vBZRFZwERNEFFkCiw90nxJtCalxQmzegltCzVyP1RJq5HZ8AABuNZr0628DMwAAAABJRU5ErkJggg==);
+    background-repeat: no-repeat;
+    background-position: right center;
+    border: 1px #A5D2EC solid;
+}
+
+.checkbox {
+
+}
+
+.checkbox input, .checkbox label {
+    margin: 0 5px;
+}
+
