@@ -64,9 +64,9 @@ return [
 
     //微信授权
     'wechatauth'              =>[ 
-        'app_id'    => 'wx00eb140eb1dcf4fa',
-        'app_secret'=> '317b61104759277ebcfddb8523adcbfb',
-        'host'      => 'kf.zclxuan.cn'
+        'app_id'    => 'wx744542efa276784e',
+        'app_secret'=> '14236f83b8221d86480f02458ac27195',
+        'host'      => 'ywb.wanggangg.top'
     ],
 
     //社群图片目录
